@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CV</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>CV</h1>
+  <div style="border: solid black 1px;">
+    <%avatar.forEach(function(avatar){%>
+    <img src="<%=avatar.image %>" alt="" style="width: 100px; height: 100px;">
+    <br>
+    <tr>
+      <h2><%=avatar.name%></h2>
+    </tr>
+    </tr>
+    <% }) %>
+  </div>
+
+  <br><br><br>
+  <div style="border: solid black 1px;">
+    <h3>infomation collection</h3>
+    <%infomation.forEach(function(infomation){%>
+    <p><%=infomation.image %></p>
+    <p><%=infomation.date %></p>
+    <p><%=infomation.title %></p>
+    <p><%=infomation.content %></p>
+    <button><a href="/editInfomation/<%=infomation._id %>">edit</a></button>
+    <button><a href="/removeInfomation/<%=infomation._id  %>">remove</a></button>
+    <%}) %>
+    <button><a href="/AddNewInfomation">add</a></button>
+  </div>
+
+  <br><br><br>
+  <div style="border: solid black 1px;">
+    <h3>education collection</h3>
+    <%education.forEach(function(education){%>
+    <p><%=education.date %></p>
+    <p><%=education.title %></p>
+    <p><%=education.local %></p>
+    <p><%=education.content %></p>
+    <button><a href="/editEducation/<%=education._id %>">edit</a></button>
+    <button><a href="/removeEducation/<%=education._id  %>">remove</a></button>
+    <%}) %>
+    <button><a href="/AddNewEducation">add</a></button>
+  </div>
+
+  <br><br><br>
+  <div style="border: solid black 1px;">
+    <h3>experience collection</h3>
+    <%experience.forEach(function(experience){%>
+    <p><%=experience.date %></p>
+    <p><%=experience.title %></p>
+    <p><%=experience.company %></p>
+    <p><%=experience.content %></p>
+    <button><a href="/editExperience/<%=experience._id %>">edit</a></button>
+    <button><a href="/removeExperience/<%=experience._id  %>">remove</a></button>
+    <%}) %>
+    <button><a href="/AddNewExperience">add</a></button>
+  </div>
+
+  <br><br><br>
+  <div style="border: solid black 1px;">
+    <h3>coding collection</h3>
+    <%coding.forEach(function(coding){%>
+    <p>coding point</p>
+    <p><%=coding.skill %></p>
+    <button><a href="/EditCoding/<%=coding._id %>">edit</a></button>
+    <button><a href="/removeCoding/<%=coding._id  %>">remove</a></button>
+    <%}) %>
+    <button><a href="/AddNewCoding">add</a></button>
+  </div>
+
+
+  <br><br><br>
+  <div style="border: solid black 1px;">
+    <h3>design collection</h3>
+    <%design.forEach(function(design){%>
+    <p>design point</p>
+    <p><%=design.skill %></p>
+    <button><a href="/EditDesign/<%=design._id %>">edit</a></button>
+    <button><a href="/removeDesign/<%=design._id  %>">remove</a></button>
+    <%}) %>
+    <button><a href="/AddNewDesign">add</a></button>
+  </div>
+  <br><br><br>
+  <div style="border: solid black 1px;">
+    <h3>contact collection</h3>
+    <%contact.forEach(function(contact){%>
+    <p><b><%=contact.nameInfo%>...: </b><%=contact.value %></p>
+    <button><a href="/EditContact/<%=contact._id %>">edit</a></button>
+    <button><a href="/removeContact/<%=contact._id  %>">remove</a></button>
+    <%}) %>
+    <button><a href="/AddNewContact">add</a></button>
+  </div>
+</body>
+
+</html>
