@@ -5,12 +5,12 @@ import { Provider } from "react-redux";
 import  store from './store';
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom'
-import Home from './components/Home';
 import Login from './components/Login';
 import About from './components/About';
 import Skills from './components/Skills';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
+import Signup from './components/Signup';
 
 
 
@@ -154,11 +154,11 @@ class App extends Component {
                 updateUser={this.updateUser}
             />}
             />
-            {/* <Route
+            <Route
                 path="/signup"
                 render={() =>
             <Signup/>}
-        />                */}
+        />               
           </div>
       </div>
       </Provider>
