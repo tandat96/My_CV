@@ -8,7 +8,7 @@ class Blog extends Component {
         
     render() { 
         return ( 
-            <div className="card-inner" id="card-blog" style={{display: this.props.changeTab ? 'block' : 'none' }} >
+            <div className="card-inner" id="card-blog" >
             {/* <div style={{position: this.props.changeTab ? 'relative' : 'absolute' }}>             */}
             <div className="card-wrap">
               <div className="content blog">

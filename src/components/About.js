@@ -14,7 +14,7 @@ class About extends Component {
     }
     render() { 
         return ( 
-            <div className="card-inner" id="card-resume" style={{display: this.props.changeTab ? 'block' : 'none' }} >
+            <div className="card-inner" id="card-resume" >
             {/* <div style={{position: this.props.changeTab ? 'relative' : 'absolute' }}>             */}
             <div className="card-wrap">
               <div className="content resume">

@@ -16,7 +16,7 @@ class Contact extends Component {
      
 
         return ( 
-  <div className="card-inner" id="card-contacts" style={{display: this.props.changeTab ? 'block' : 'none' }} >
+  <div className="card-inner" id="card-contacts"  >
     {/* <div style={{position: this.props.changeTab ? 'relative' : 'absolute' }}>     */}
     <div className="card-wrap">
       <div className="content contacts">

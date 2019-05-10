@@ -1,81 +1,46 @@
 import React, { Component } from 'react';
 import Profile from './components/Profile';
+
+import { Provider } from "react-redux";
+import  store from './store';
+import axios from 'axios';
+import { Route, Link } from 'react-router-dom'
+import Home from './components/Home';
+import Login from './components/Login';
 import About from './components/About';
 import Skills from './components/Skills';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
-import { Provider } from "react-redux";
-import  store from './store';
-// import About from './About';
-// import Skills from './Skills';
-// import Blog from './Blog';
-// import Contact from './Contact';
-// import Profile from './Profile';
 
-const urllog = new URL('http://localhost:4000/login');
 
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            changeTab1:true,
-            changeTab2:false,
-            changeTab3:false,
-            changeTab4:false,
-            changeLogin:false
-        }
-    }
-    ChangeTabLogin = ()=>{
-        this.setState({ 
-            changeTab1:false,
-            changeTab2:false,
-            changeTab3:false,
-            changeTab4:false,
-            changeLogin:true
-            });
-    }
-    ChangeTabStatus1=()=>{
-        this.setState({ 
-            changeTab1:true,
-            changeTab2:false,
-            changeTab3:false,
-            changeTab4:false,
-            changeLogin:false
+        this.logout = this.logout.bind(this)
 
-        })
-        
-    }
-    ChangeTabStatus2=()=>{
-        this.setState({ 
-            changeTab1: false,
-            changeTab2:true,
-            changeTab3:false,
-            changeTab4:false,
-            changeLogin:false
-
-        })}
-    ChangeTabStatus3=()=>{
-            this.setState({ 
-                changeTab1: false,
-                changeTab2:false,
-                changeTab3:true,
-                changeTab4:false,
-            changeLogin:false
-
-            })}
-    ChangeTabStatus4=()=>{
-                this.setState({ 
-                    changeTab1: false,
-                    changeTab2:false,
-                    changeTab3:false,
-                    changeTab4:true,
-            changeLogin:false
-
-                })}
-  
-    render(
-    ) { 
+    } 
+        logout(event) {
+                    event.preventDefault()
+                    console.log('logging out')
+                    axios.post('/user/logout').then(response => {
+                      console.log(response.data)
+                      if (response.status === 200) {
+                        this.props.updateUser({
+                          loggedIn: false,
+                          username: null
+                        })
+                      }
+                    }).catch(error => {
+                        console.log('Logout error')
+                    })
+                  }
+            
+        render() {
+                    const loggedIn = this.props.loggedIn;
+                    console.log('navbar render, props: ')
+                    console.log(this.props);
+                    
         
         return ( 
             <Provider store={store}>
@@ -96,20 +61,27 @@ class App extends Component {
                   <div className="top-menu top-menu-onepage">
                       <div className="menu-main-menu-container">
                           <ul id="menu-main-menu" className="menu">
-                              <li data-id="menu-item-110" onClick={()=>this.ChangeTabStatus1()}
+                          <li>
+                              <Link to="/About" data-id="menu-item-110" 
                                   className=" menu-item menu-item-type-post_type menu-item-object-page"><a href="#resume"
                                       className="one-page-menu-item"><span className="icon ion-android-list" />About me</a>
-                              </li>
-                              <li data-id="menu-item-109" onClick={()=>this.ChangeTabStatus2()}
+                              </Link></li>
+                              <li>
+                              <Link to="/Skills"  data-id="menu-item-109" 
                                   className=" menu-item menu-item-type-post_type menu-item-object-page"><a href="#works"
-                                      className="one-page-menu-item"><span className="icon fa fa-diagnoses" />Skills</a></li>
-                              <li data-id="menu-item-107" onClick={()=>this.ChangeTabStatus3()}
+                                      className="one-page-menu-item"><span className="icon fa fa-diagnoses" />Skills</a></Link>
+                              </li>
+                              <li>
+                              <Link to="/Blog" data-id="menu-item-107" 
                                   className=" menu-item menu-item-type-post_type menu-item-object-page"><a href="#blog"
                                       className="one-page-menu-item"><span className="icon ion-chatbox-working" />Blog</a>
+                              </Link>
                               </li>
-                              <li data-id="menu-item-108" onClick={()=>this.ChangeTabStatus4()}
+                              <li>
+                              <Link to="/Contact" data-id="menu-item-108"
                                   className=" menu-item menu-item-type-post_type menu-item-object-page"><a href="#contacts"
-                                      className="one-page-menu-item"><span className="icon fas fa-address-card" />Contact</a></li>
+                                      className="one-page-menu-item"><span className="icon fas fa-address-card" />Contact</a></Link>
+                            </li>
                           </ul>
                       </div>
                   </div>
@@ -119,17 +91,28 @@ class App extends Component {
       
                   <div className="profile ">
                     <Profile/>
+                      {loggedIn ? (
                       <div className="lnks">
-                          <a className="lnk" href={urllog}>
-                              <span className="text" >Login</span>
+                        <Link to="#" className="lnk login_hover">
+                              <span className="text" >Logout</span>
                               <span className="ion fas fa-user-cog" />
-                          </a>
-                          <a href="index.html#contacts" className="lnk">
-                              <span className="text">Contact Me</span>
-                              <span className="ion ion-android-send" />
-                          </a>
-                      </div>
+                          </Link>
                   </div>
+                        ) : (
+                      <div className="lnks">
+
+                            <Link to="/login" className="lnk login_hover">
+                            <span className="text" >Login</span>
+                            <span className="ion fas fa-user-cog" />
+                        </Link>
+                        <Link to="/signup" className="lnk login_hover">
+                            <span className="text" >Signup</span>
+                            <span className="ion fas fa-user-cog" />
+                        </Link>
+                        </div>
+                            )}
+                        
+                      </div>
               </div>
               <div className="s_overlay" />
               <div className="content-sidebar">
@@ -140,20 +123,42 @@ class App extends Component {
                   </div>
                   <span className="close" />
               </div>
-            <About changeTab={this.state.changeTab1}
-                //  dataExp={this.state.data && this.state.data.experience}
-                //  dataEdu={this.state.data && this.state.data.education}
+            <Route
+                path="/(About|)"
+                 render={() =>
+                <About
+            />}
+                />
+            <Route
+                path="/Skills"               
+                 render={() =>
+                <Skills
+            />}
+                />
+            <Route
+                path="/Blog"               
+                 render={() =>
+                <Blog
+            />}
+                />         
+            <Route
+                path="/Contact"               
+                 render={() =>
+                <Contact
+            />}
+                />          
+            <Route
+                path="/login"
+                render={() =>
+                <Login
+                updateUser={this.updateUser}
+            />}
             />
-            <Skills changeTab={this.state.changeTab2}
-            // dataDesign={this.state.data && this.state.data.design}
-            // dataCoding={this.state.data && this.state.data.coding}
-            />
-            <Blog changeTab={this.state.changeTab3}
-                // dataBlog={this.state.data && this.state.data.infomation}
-            />
-            <Contact changeTab={this.state.changeTab4} 
-                // dataContact={this.state.data && this.state.data.contact}
-            />
+            {/* <Route
+                path="/signup"
+                render={() =>
+            <Signup/>}
+        />                */}
           </div>
       </div>
       </Provider>
