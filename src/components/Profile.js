@@ -1,14 +1,39 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 
 
 class Profile extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
+    constructor() {
+        super()
+        this.logout = this.logout.bind(this)
     }
-    render() { 
+
+    logout(event) {
+        event.preventDefault()
+        console.log('logging out')
+        axios.post('/user/logout').then(response => {
+          console.log(response.data)
+          if (response.status === 200) {
+            this.props.updateUser({
+              loggedIn: false,
+              username: null
+            })
+          }
+        }).catch(error => {
+            console.log('Logout error')
+        })
+      }
+
+    render() {
+        const loggedIn = this.props.loggedIn;
+        console.log('navbar render, props: ')
+        console.log(this.props);
+        
         return ( 
+            <div className="profile ">
+
             <div className="profile-content">
       
             <div className="slide" style={{backgroundImage: 'url(wp-content/uploads/2018/11/bg-1.jpg)'}} />
@@ -32,6 +57,28 @@ class Profile extends Component {
                 <span className="col fab fa-centos" />
             </div>
         </div>
+           {loggedIn ? (
+            <div className="lnks">
+              <Link to="#" className="lnk login_hover" onClick={this.logout}>
+                    <span className="text" >Logout</span>
+                    <span className="ion fas fa-user-cog" />
+                </Link>
+        </div>
+              ) : (
+            <div className="lnks">
+
+                  <Link to="/login" className="lnk login_hover">
+                  <span className="text" >Login</span>
+                  <span className="ion fas fa-user-cog" />
+              </Link>
+              <Link to="/signup" className="lnk login_hover">
+                  <span className="text" >Signup</span>
+                  <span className="ion fas fa-user-cog" />
+              </Link>
+              </div>
+                  )}
+                      </div>
+
 
          );
     }

@@ -15,31 +15,48 @@ import Signup from './components/Signup';
 
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.logout = this.logout.bind(this)
-
-    } 
-        logout(event) {
-                    event.preventDefault()
-                    console.log('logging out')
-                    axios.post('/user/logout').then(response => {
-                      console.log(response.data)
-                      if (response.status === 200) {
-                        this.props.updateUser({
-                          loggedIn: false,
-                          username: null
-                        })
-                      }
-                    }).catch(error => {
-                        console.log('Logout error')
-                    })
-                  }
-            
-        render() {
-                    const loggedIn = this.props.loggedIn;
-                    console.log('navbar render, props: ')
-                    console.log(this.props);
+    constructor() {
+        super()
+        this.state = {
+          loggedIn: false,
+          username: null
+        }
+    
+        this.getUser = this.getUser.bind(this)
+        this.componentDidMount = this.componentDidMount.bind(this)
+        this.updateUser = this.updateUser.bind(this)
+      }
+    
+      componentDidMount() {
+        this.getUser()
+      }
+    
+      updateUser (userObject) {
+        this.setState(userObject)
+      }
+    
+      getUser() {
+        axios.get('/user/').then(response => {
+          console.log('Get user response: ')
+          console.log(response.data)
+          if (response.data.user) {
+            console.log('Get User: There is a user saved in the server session: ')
+    
+            this.setState({
+              loggedIn: true,
+              username: response.data.user.username
+            })
+          } else {
+            console.log('Get user: no user');
+            this.setState({
+              loggedIn: false,
+              username: null
+            })
+          }
+        })
+      }
+    
+      render() {
                     
         
         return ( 
@@ -88,31 +105,7 @@ class App extends Component {
               </header>
       
               <div className="card-started" id="home-card">
-      
-                  <div className="profile ">
-                    <Profile/>
-                      {loggedIn ? (
-                      <div className="lnks">
-                        <Link to="#" className="lnk login_hover">
-                              <span className="text" >Logout</span>
-                              <span className="ion fas fa-user-cog" />
-                          </Link>
-                  </div>
-                        ) : (
-                      <div className="lnks">
-
-                            <Link to="/login" className="lnk login_hover">
-                            <span className="text" >Login</span>
-                            <span className="ion fas fa-user-cog" />
-                        </Link>
-                        <Link to="/signup" className="lnk login_hover">
-                            <span className="text" >Signup</span>
-                            <span className="ion fas fa-user-cog" />
-                        </Link>
-                        </div>
-                            )}
-                        
-                      </div>
+                    <Profile updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
               </div>
               <div className="s_overlay" />
               <div className="content-sidebar">
