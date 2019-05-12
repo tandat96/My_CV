@@ -27,7 +27,7 @@ class Profile extends Component {
       }
 
     render() {
-        const loggedIn = this.props.loggedIn;
+        const {loggedIn} = this.props;
         console.log('navbar render, props: ')
         console.log(this.props);
         
@@ -59,7 +59,7 @@ class Profile extends Component {
         </div>
            {loggedIn ? (
             <div className="lnks">
-              <Link to="#" className="lnk login_hover" onClick={this.logout}>
+              <Link to="/" className="lnk login_hover" onClick={this.logout}>
                     <span className="text" >Logout</span>
                     <span className="ion fas fa-user-cog" />
                 </Link>

@@ -11,6 +11,7 @@ class Code extends Component {
   } 
     render() { 
       const {tocodes} = this.props
+      const {loggedIn} = this.props;
     
         return ( 
             <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
@@ -19,14 +20,20 @@ class Code extends Component {
               <div className="skill-title border-line-h">
                 <div className="icon"><i className="ion ion-code" /></div>
                 <div className="name">Coding</div>
+                {loggedIn ? (
                 <button className="btn" onClick={()=>this.props.EditCode()} style={{display: this.props.ShowCode ? 'none' : 'block' }}>
                              Add New
                       </button>
+                         ) : (
+                          <div></div>
+                    )}
               </div>
                 <ul>
                 <CodeForm/>
                 { 
-                    tocodes.map(tocode => <CodeItem   key={tocode._id} tocode={tocode}/>)
+                    tocodes.map(tocode => <CodeItem   key={tocode._id} tocode={tocode}
+                      loggedIn={this.props.loggedIn}                    
+                    />)
                 }
               </ul>
               </div>

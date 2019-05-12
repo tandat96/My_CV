@@ -14,14 +14,20 @@ class CodeItem extends Component {
   }
     render() { 
       const  {tocode} = this.props;
+      const {loggedIn} = this.props;
+
 
         return ( 
             <li className="border-line-h">
             <div className="row">
              <div className="name col"> {tocode.skill}</div>
                <div className="col row">
+               {loggedIn ? (
            <div className="col"> <a href="#remove" onClick={this.DeleteItem}> <i className="fa fa-trash" aria-hidden="true"></i></a></div>
-         </div>
+           ) : (
+            <div className="col"></div>
+      )}
+           </div>
 
                </div>
                <div className="rate">

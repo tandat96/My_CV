@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 class Signup extends Component {
-    constructor() {
+	constructor() {
 		super()
 		this.state = {
 			username: '',
@@ -26,7 +26,7 @@ class Signup extends Component {
 		event.preventDefault()
 
 		//request to server to add a new username/password
-		axios.post('/user/', {
+		axios.post('/users/signup', {
 			username: this.state.username,
 			password: this.state.password
 		})
@@ -48,24 +48,24 @@ class Signup extends Component {
 	}
 
 
-render() {
-        return ( 
-            <div className="login-style card-inner">
-            <h1>Sign Up</h1>
-            <form method="POST">
-            <input type="text" name="username" placeholder="Username" required="required" 
-            							value={this.state.username}
-                                        onChange={this.handleChange}/>
-            <input type="password" name="password" placeholder="Password" required="required" 
-            							value={this.state.password}
-                                        onChange={this.handleChange}
-            />
-            <button type="submit" className="btn btn-primary btn-block btn-large" name value="Login" onClick={this.handleSubmit}>Login</button>
-            </form>
-            </div>
+	render() {
+		return (
+			<div className="login-style card-inner">
+				<h1>Sign Up</h1>
+				<form method="POST">
+					<input type="text" name="username" placeholder="Username" required="required"
+						value={this.state.username}
+						onChange={this.handleChange} />
+					<input type="password" name="password" placeholder="Password" required="required"
+						value={this.state.password}
+						onChange={this.handleChange}
+					/>
+					<button type="submit" className="btn btn-primary btn-block btn-large" name value="Login" onClick={this.handleSubmit}>Login</button>
+				</form>
+			</div>
 
-         );
-    }
+		);
+	}
 }
- 
+
 export default Signup;

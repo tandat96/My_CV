@@ -12,6 +12,8 @@ class Design extends Component {
   }        
     render() { 
     const {todesigns} = this.props
+    const {loggedIn} = this.props;
+
 
         return ( 
             <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
@@ -20,14 +22,20 @@ class Design extends Component {
                 <div className="skill-title border-line-h">
                   <div className="icon"><i className="ion ion-easel" /></div>
                   <div className="name">Design</div>
+                  {loggedIn ? (
                   <button className="btn" onClick={()=>this.props.EditDesign()} style={{display: this.props.ShowDesign ? 'none' : 'block' }}>
                              Add New
                       </button>
+                       ) : (
+                        <div></div>
+                  )}
                 </div>
                 <ul>
                 <DesignForm />
                 { 
-                    todesigns.map(todesign => <DesignItem  key={todesign._id} todesign={todesign}/>)
+                    todesigns.map(todesign => <DesignItem  key={todesign._id} todesign={todesign}
+                      loggedIn={this.props.loggedIn}                    
+                    />)
                 }
               </ul>
               </div>

@@ -13,12 +13,18 @@ class BlogItem extends Component {
   }
     render() { 
       const { toblog } = this.props
+      const {loggedIn} = this.props;
+
 
         return ( 
             <div className="col col-d-6 col-t-6 col-m-12">
             <div className="row" style={{margin:'auto',width:'60%',paddingBottom:'20px'}}>
+            {loggedIn ? (
                 <div className="col"> <a href="#remove" onClick={this.DeleteItem}> <i className="fa fa-trash" aria-hidden="true"></i></a></div>
-              </div>
+                ) : (
+                  <div className="col"></div>
+            )}
+                </div>
             <div className="box-item">
               <div id="post-115" className="post-115 post type-post status-publish format-standard has-post-thumbnail hentry category-design category-music tag-code tag-html tag-plugin tag-web">
                 <div className="image blog-img" >

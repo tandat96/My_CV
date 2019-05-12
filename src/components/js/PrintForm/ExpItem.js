@@ -13,13 +13,20 @@ class ExpItem extends Component {
   }
     render() { 
       const  {toexp} = this.props;
+      const {loggedIn} = this.props;
+
         return ( 
             <div className="resume-item border-line-h active">
             <div className="row" style= {{margin:'auto'}}>
                 <div className="date col">{toexp.date}</div>
                 <div className="col row">
+            {loggedIn ? (
+
                   <div className="col"> <a href="#remove"  onClick={this.DeleteItem}> <i className="fa fa-trash" aria-hidden="true"></i></a></div>
-                </div>
+                  ) : (
+                    <div className="col"></div>
+              )}
+                  </div>
                 </div>
                 <div className="name"> {toexp.title}</div>
                 <div className="company"> {toexp.company} </div>

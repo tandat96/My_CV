@@ -18,7 +18,9 @@ componentDidMount() {
             <div>
               <ExpForm  />
               { 
-                    toexps.map(toexp => <ExpItem  key={toexp._id} toexp={toexp}/>)
+                    toexps.map(toexp => <ExpItem  key={toexp._id} toexp={toexp}
+                      loggedIn={this.props.loggedIn}                    
+                    />)
                 }
             </div>
          );

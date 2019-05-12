@@ -17,7 +17,9 @@ class Blogitem extends Component {
           <div className="row border-line-v">
             <BlogForm/>
             { 
-                    toblogs.map(toblog => <BlogItem key={toblog._id} toblog={toblog}  />)
+                    toblogs.map(toblog => <BlogItem key={toblog._id} toblog={toblog}  
+                      loggedIn={this.props.loggedIn}                    
+                    />)
                 }
 
           </div>

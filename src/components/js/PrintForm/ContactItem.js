@@ -16,6 +16,7 @@ class ContactItem  extends Component {
     }
     render() { 
         const { todo } = this.props
+        const {loggedIn} = this.props;
 
         return ( 
             <li>
@@ -24,9 +25,13 @@ class ContactItem  extends Component {
             <strong>{todo.nameInfo}:</strong>
             {todo.value}
             </div>
+            {loggedIn ? (
             <div className="col">
           <div className=""> <a href="#remove" onClick={this.DeleteItem}> <i className="fa fa-trash" aria-hidden="true"></i></a></div>
         </div>
+        ) : (
+            <div className="col"></div>
+      )}
             </div>
             </li>
          );

@@ -17,7 +17,9 @@ class Edu extends Component {
             <div>
         <EduForm/> 
         { 
-                    toedus.map(toedu => <EduItem key={toedu._id} toedu={toedu}/>)
+                    toedus.map(toedu => <EduItem key={toedu._id} toedu={toedu}
+                      loggedIn={this.props.loggedIn}                    
+                    />)
                 }
       </div>                     
 

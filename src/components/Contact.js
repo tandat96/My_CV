@@ -13,7 +13,8 @@ class Contact extends Component {
 
     render() { 
     const {todos} = this.props
-     
+    const {loggedIn} = this.props;
+    
 
         return ( 
   <div className="card-inner" id="card-contacts"  >
@@ -21,16 +22,22 @@ class Contact extends Component {
     <div className="card-wrap">
       <div className="content contacts">
         <div className="title">Contact</div>
+        {loggedIn ? (
         <button className="btn" onClick={()=>this.props.Edit()} style={{display: this.props.ShowContact ? 'none' : 'block' }}>
                              Add New
                       </button>
+        ) : (
+          <div></div>
+    )}
         <div className="row">
           <div className="col col-d-12 col-t-12 col-m-12 border-line-v">
            <div className="info-list">
               <ul>
                 <ContactForm />
                 { 
-                    todos.map(todo => <ContactItem  key={todo._id} todo={todo}/>)
+                    todos.map(todo => <ContactItem  key={todo._id} todo={todo} 
+                    loggedIn={this.props.loggedIn}
+                    />)
                 }
               </ul>
             </div>

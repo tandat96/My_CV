@@ -14,7 +14,7 @@ class Login extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
-  
+
     }
 
     handleChange(event) {
@@ -28,7 +28,7 @@ class Login extends Component {
         console.log('handleSubmit')
 
         axios
-            .post('/user/login', {
+            .post('/users/login', {
                 username: this.state.username,
                 password: this.state.password
             })
@@ -49,32 +49,32 @@ class Login extends Component {
             }).catch(error => {
                 console.log('login error: ')
                 console.log(error);
-                
+
             })
     }
-    render() { 
+    render() {
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
-            <div className="login-style card-inner">
-            <h1>Login</h1>
-            <form method="POST">
-            <input type="text" name="username" placeholder="Username" required="required" 
-                                                value={this.state.username}
-                                                onChange={this.handleChange}
-            />
-            <input type="password" name="password" placeholder="Password" required="required" 
-                                                value={this.state.password}
-                                                onChange={this.handleChange}
-            />
-            <button type="submit" className="btn btn-primary btn-block btn-large" name value="Login" onClick={this.handleSubmit}>Login</button>
-            </form>
-            </div>
+                <div className="login-style card-inner">
+                    <h1>Login</h1>
+                    <form method="POST">
+                        <input type="text" name="username" placeholder="Username" required="required"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                        />
+                        <input type="password" name="password" placeholder="Password" required="required"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                        />
+                        <button type="submit" className="btn btn-primary btn-block btn-large" name value="Login" onClick={this.handleSubmit}>Login</button>
+                    </form>
+                </div>
 
-         );
+            );
         }
     }
 }
- 
+
 export default Login;

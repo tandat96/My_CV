@@ -38,7 +38,7 @@ class App extends Component {
       getUser() {
         axios.get('/user/').then(response => {
           console.log('Get user response: ')
-          console.log(response.data)
+          console.log("aaaaa"+response.data)
           if (response.data.user) {
             console.log('Get User: There is a user saved in the server session: ')
     
@@ -80,24 +80,24 @@ class App extends Component {
                           <ul id="menu-main-menu" className="menu">
                           <li>
                               <Link to="/About" data-id="menu-item-110" 
-                                  className=" menu-item menu-item-type-post_type menu-item-object-page"><a href="#resume"
-                                      className="one-page-menu-item"><span className="icon ion-android-list" />About me</a>
+                                  className=" menu-item menu-item-type-post_type menu-item-object-page"><div
+                                      className="one-page-menu-item"><span className="icon ion-android-list" />About me</div>
                               </Link></li>
                               <li>
                               <Link to="/Skills"  data-id="menu-item-109" 
-                                  className=" menu-item menu-item-type-post_type menu-item-object-page"><a href="#works"
-                                      className="one-page-menu-item"><span className="icon fa fa-diagnoses" />Skills</a></Link>
+                                  className=" menu-item menu-item-type-post_type menu-item-object-page"><div
+                                      className="one-page-menu-item"><span className="icon fa fa-diagnoses" />Skills</div></Link>
                               </li>
                               <li>
                               <Link to="/Blog" data-id="menu-item-107" 
-                                  className=" menu-item menu-item-type-post_type menu-item-object-page"><a href="#blog"
-                                      className="one-page-menu-item"><span className="icon ion-chatbox-working" />Blog</a>
+                                  className=" menu-item menu-item-type-post_type menu-item-object-page"><div 
+                                      className="one-page-menu-item"><span className="icon ion-chatbox-working" />Blog</div>
                               </Link>
                               </li>
                               <li>
                               <Link to="/Contact" data-id="menu-item-108"
-                                  className=" menu-item menu-item-type-post_type menu-item-object-page"><a href="#contacts"
-                                      className="one-page-menu-item"><span className="icon fas fa-address-card" />Contact</a></Link>
+                                  className=" menu-item menu-item-type-post_type menu-item-object-page"><div 
+                                      className="one-page-menu-item"><span className="icon fas fa-address-card" />Contact</div></Link>
                             </li>
                           </ul>
                       </div>
@@ -120,24 +120,28 @@ class App extends Component {
                 path="/(About|)"
                  render={() =>
                 <About
+                loggedIn={this.state.loggedIn}
             />}
                 />
             <Route
                 path="/Skills"               
                  render={() =>
                 <Skills
+                loggedIn={this.state.loggedIn}
             />}
                 />
             <Route
                 path="/Blog"               
                  render={() =>
                 <Blog
+                loggedIn={this.state.loggedIn}
             />}
                 />         
             <Route
                 path="/Contact"               
                  render={() =>
                 <Contact
+                loggedIn={this.state.loggedIn}
             />}
                 />          
             <Route
@@ -150,7 +154,8 @@ class App extends Component {
             <Route
                 path="/signup"
                 render={() =>
-            <Signup/>}
+            <Signup
+            />}
         />               
           </div>
       </div>

@@ -13,6 +13,8 @@ class About extends Component {
         this.state = { }
     }
     render() { 
+      const {loggedIn} = this.props;
+
         return ( 
             <div className="card-inner" id="card-resume" >
             {/* <div style={{position: this.props.changeTab ? 'relative' : 'absolute' }}>             */}
@@ -24,10 +26,14 @@ class About extends Component {
                     <div className="resume-title border-line-h">
                       <div className="icon"><i className="ion ion-briefcase" /></div>
                       <div className="name">Experience
-                      
+                    {loggedIn ? (
                       <button className="btn" onClick={()=>this.props.EditExp()} style={{display: this.props.Show ? 'none' : 'block' }}>
                              Add New
                       </button>
+                      ) : (
+                        <div></div>
+                  )}
+
                       </div>
                     </div>
             <div className="resume-items Exp">
@@ -39,9 +45,14 @@ class About extends Component {
                     <div className="resume-title border-line-h">
                       <div className="icon"><i className="ion ion-university" /></div>
                       <div className="name">EDUCATION
+                      {loggedIn ? (
                       <button className="btn"onClick={()=>this.props.EditEdu()} style={{display: this.props.Show2 ? 'none' : 'block' }}>
-                             Add New
+                      Add New
                       </button>
+                      ) : (
+                        <div></div>
+                  )}
+                     
                       </div>
                     </div>
         <div className="resume-items Edu">
@@ -67,6 +78,7 @@ const mapStateToProps = (state, ownProps) => {
     toexp: state.toexp,
     Show2:state.Show2,
     toedu: state.toedu,
+    
 
   }
 }

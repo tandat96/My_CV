@@ -13,14 +13,21 @@ class EduItem extends Component {
   }
     render() { 
       const  {toedu} = this.props;
+      const {loggedIn} = this.props;
+
 
         return ( 
             <div className="resume-item border-line-h ">
             <div className="row" style= {{margin:'auto'}}>
             <div className="date col">{toedu.date}</div>
                 <div className="col row">
+            {loggedIn ? (
+
                   <div className="col"> <a href="#remove"  onClick={this.DeleteItem}> <i className="fa fa-trash" aria-hidden="true"></i></a></div>
-                </div>
+                  ) : (
+                    <div className="col"></div>
+              )}
+                  </div>
                 </div>
             <div className="name"> {toedu.title}</div>
             <div className="company">{toedu.local} </div>
