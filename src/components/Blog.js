@@ -21,7 +21,8 @@ class Blog extends Component {
                    ) : (
                     <div></div>
               )}
-                  <Blogitem 
+                  <Blogitem
+                    loggedIn={this.props.loggedIn}
                   />
                   
                   <div className="clear" />

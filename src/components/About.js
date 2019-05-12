@@ -38,6 +38,7 @@ class About extends Component {
                     </div>
             <div className="resume-items Exp">
                     <Exp
+                    loggedIn={this.props.loggedIn}
                     />
                     </div>
                   </div>
@@ -58,6 +59,7 @@ class About extends Component {
         <div className="resume-items Edu">
 
                     <Edu
+                    loggedIn={this.props.loggedIn}
                     />
                     </div>
                  </div>

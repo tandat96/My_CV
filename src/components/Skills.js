@@ -22,8 +22,10 @@ class Skills extends Component {
                 <div className="title">My Skills</div>
                 <div className="row">
                   <Design
+                    loggedIn={this.props.loggedIn}
                   />
                   <Code
+                    loggedIn={this.props.loggedIn}
                   />
                   <div className="clear" />
                 </div>
