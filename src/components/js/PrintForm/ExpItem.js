@@ -14,11 +14,12 @@ class ExpItem extends Component {
     render() { 
       const  {toexp} = this.props;
       const {loggedIn} = this.props;
-
+      const cts = toexp.date,
+      cdate = (new Date(cts)).toDateString();
         return ( 
             <div className="resume-item border-line-h active">
             <div className="row" style= {{margin:'auto'}}>
-                <div className="date col">{toexp.date}</div>
+                <div className="date col">{cdate}</div>
                 <div className="col row">
             {loggedIn ? (
 

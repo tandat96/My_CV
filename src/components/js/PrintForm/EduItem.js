@@ -14,12 +14,13 @@ class EduItem extends Component {
     render() { 
       const  {toedu} = this.props;
       const {loggedIn} = this.props;
-
+      const cts = toedu.date,
+      cdate = (new Date(cts)).toDateString();
 
         return ( 
             <div className="resume-item border-line-h ">
             <div className="row" style= {{margin:'auto'}}>
-            <div className="date col">{toedu.date}</div>
+            <div className="date col">{cdate}</div>
                 <div className="col row">
             {loggedIn ? (
 

@@ -14,6 +14,8 @@ class BlogItem extends Component {
     render() { 
       const { toblog } = this.props
       const {loggedIn} = this.props;
+      const cts = toblog.date,
+      cdate = (new Date(cts)).toDateString();
 
 
         return ( 
@@ -34,7 +36,7 @@ class BlogItem extends Component {
                 <div className="desc">
                   <a href="2018/11/16/creativity-is-more-than-a-song/index.html">
                     <span className="date">
-                      {toblog.date} </span>
+                      {cdate} </span>
                   </a>
                   <a href="2018/11/16/creativity-is-more-than-a-song/index.html" className="name">{toblog.title} </a>
                   <div className="text">
