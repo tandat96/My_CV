@@ -4,7 +4,12 @@ import { addblog,EditBlog } from '../../../actions'
 
 
 class BlogForm extends Component {
-
+  state = {
+    image: '',
+    date: '',
+    title: '',
+    content: '',
+  }
 
   handleInputChange = e => {
     this.setState({

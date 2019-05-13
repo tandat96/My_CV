@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { addcontact,Edit } from '../../../actions'
 
 class ContactForm extends Component {
-
+  state = {
+    nameInfo: '',
+      value: '',
+  };
 
   handleInputChange = e => {
     this.setState({

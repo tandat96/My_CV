@@ -4,6 +4,13 @@ import { addedu,EditEdu } from '../../../actions'
 
 
 class EduForm extends Component {
+  state = {
+    date: '',
+      title: '',
+      local: '',
+      content: '',
+  
+  };
 
 
   handleInputChange = e => {

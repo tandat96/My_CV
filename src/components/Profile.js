@@ -61,7 +61,7 @@ class Profile extends Component {
             <div className="lnks">
               <Link to="/" className="lnk login_hover" onClick={this.logout}>
                     <span className="text" >Logout</span>
-                    <span className="ion fas fa-user-cog" />
+                    <span className="ion fas fa-sign-out-alt" />
                 </Link>
         </div>
               ) : (
@@ -73,7 +73,7 @@ class Profile extends Component {
               </Link>
               <Link to="/signup" className="lnk login_hover">
                   <span className="text" >Signup</span>
-                  <span className="ion fas fa-user-cog" />
+                  <span className="ion fas fa-user-plus" />
               </Link>
               </div>
                   )}

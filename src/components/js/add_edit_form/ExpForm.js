@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { addexp,EditExp } from '../../../actions'
 
-
 class ExpForm extends Component {
-
+  state = {
+    date: '',
+    title: '',
+    company: '',
+    content: '',
+  
+  };
 
   handleInputChange = e => {
     this.setState({
@@ -13,7 +18,8 @@ class ExpForm extends Component {
   };
 
   handleSubmit = () => {
-    if ( this.state.date.trim() && this.state.title.trim() && this.state.company.trim() ) {
+
+    if ( this.state.title.trim() && this.state.company.trim() ) {
       const {date,title,company,content}=this.state
       this.props.addexp(date,title,company,content)
     }
@@ -59,5 +65,4 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
 
-   
   export default connect(mapStateToProps,{ addexp,EditExp } )(ExpForm)
